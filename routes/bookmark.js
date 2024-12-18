@@ -76,11 +76,11 @@ router.get("/bookmark/", isAuthenticated, async (req, res) => {
 
 //* SERVICE : SUPPRIMER UN BOOKMARK
 //
-router.post("/bookmark/delete", isAuthenticated, async (req, res) => {
+router.delete("/bookmark/delete", isAuthenticated, async (req, res) => {
   try {
     //
     // Destructuring de req
-    const { gameId } = req.body;
+    const { gameId } = req.query;
 
     // Récupération de l'user id
     const userId = req.user._id;
