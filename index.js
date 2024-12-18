@@ -49,6 +49,10 @@ app.use(userRouter);
 const bookmarkRouter = require("./routes/bookmark");
 app.use(bookmarkRouter);
 
+//Route Review
+const reviewRouter = require("./routes/review");
+app.use(reviewRouter);
+
 //* SERVICE : ROUTE POUBELLE
 app.all("*", (req, res) => {
   res.status(404).json({ message: "Route introuvable" });
