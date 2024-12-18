@@ -74,5 +74,29 @@ router.get("/bookmark/", isAuthenticated, async (req, res) => {
   }
 });
 
+//* SERVICE : SUPPRIMER UN BOOKMARK
+//
+router.post("/bookmark/delete", isAuthenticated, async (req, res) => {
+  try {
+    //
+    // Destructuring de req
+    const { gameId } = req.body;
+
+    // Récupération de l'user id
+    const userId = req.user._id;
+
+    // Recherche du bookmark et suppression
+    const deletedBookmark = await Bookmark.findOneAndDelete({
+      gameId: gameId,
+      owner: userId,
+    });
+
+    // Retour au client
+    res.status(200).json(deletedBookmark);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 //Export des routes
 module.exports = router;
